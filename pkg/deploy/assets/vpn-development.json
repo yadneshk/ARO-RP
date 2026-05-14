@@ -26,7 +26,12 @@
             },
             "properties": {
                 "publicIPAllocationMethod": "[parameters('publicIPAddressAllocationMethod')]"
-            }
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ]
         },
         {
             "type": "Microsoft.Network/virtualNetworks",
@@ -74,8 +79,8 @@
                 ],
                 "vpnType": "RouteBased",
                 "sku": {
-                    "name": "VpnGw1",
-                    "tier": "VpnGw1"
+                    "name": "VpnGw1AZ",
+                    "tier": "VpnGw1AZ"
                 },
                 "vpnClientConfiguration": {
                     "vpnClientAddressPool": {

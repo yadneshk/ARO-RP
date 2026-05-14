@@ -47,7 +47,12 @@
             "sku": {
                 "name": "[parameters('publicIPAddressSkuName')]"
             },
-            "type": "Microsoft.Network/publicIPAddresses"
+            "type": "Microsoft.Network/publicIPAddresses",
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ]
         },
         {
             "apiVersion": "2020-08-01",
@@ -117,8 +122,8 @@
                     }
                 ],
                 "sku": {
-                    "name": "VpnGw1",
-                    "tier": "VpnGw1"
+                    "name": "VpnGw1AZ",
+                    "tier": "VpnGw1AZ"
                 },
                 "vpnClientConfiguration": {
                     "vpnClientAddressPool": {

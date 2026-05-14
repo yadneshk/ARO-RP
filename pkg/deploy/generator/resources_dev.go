@@ -278,6 +278,12 @@ func (g *generator) devVPNPip() *arm.Resource {
 			Name:     pointerutils.ToPtr("dev-vpn-pip"),
 			Type:     pointerutils.ToPtr("Microsoft.Network/publicIPAddresses"),
 			Location: pointerutils.ToPtr("[resourceGroup().location]"),
+			// AZ VPN gateway SKUs require a Standard public IP with availability zones.
+			Zones: []*string{
+				pointerutils.ToPtr("1"),
+				pointerutils.ToPtr("2"),
+				pointerutils.ToPtr("3"),
+			},
 		},
 		APIVersion: azureclient.APIVersion("Microsoft.Network"),
 	}
@@ -327,8 +333,8 @@ func (g *generator) devVPN() *arm.Resource {
 				},
 				VPNType: pointerutils.ToPtr(armnetwork.VPNTypeRouteBased),
 				SKU: &armnetwork.VirtualNetworkGatewaySKU{
-					Name: pointerutils.ToPtr(armnetwork.VirtualNetworkGatewaySKUNameVPNGw1),
-					Tier: pointerutils.ToPtr(armnetwork.VirtualNetworkGatewaySKUTierVPNGw1),
+					Name: pointerutils.ToPtr(armnetwork.VirtualNetworkGatewaySKUNameVPNGw1AZ),
+					Tier: pointerutils.ToPtr(armnetwork.VirtualNetworkGatewaySKUTierVPNGw1AZ),
 				},
 				VPNClientConfiguration: &armnetwork.VPNClientConfiguration{
 					VPNClientAddressPool: &armnetwork.AddressSpace{
